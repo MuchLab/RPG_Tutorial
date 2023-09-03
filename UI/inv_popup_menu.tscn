@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpdn370fo2qus"]
+
+[ext_resource type="FontFile" uid="uid://cl0hwx6qofh88" path="res://Fonts/HanaleiFill-Regular.ttf" id="1_xjxj6"]
+
+[node name="InvPopupMenu" type="Panel"]
+self_modulate = Color(0, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -359.0
+offset_bottom = -186.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_fonts/font = ExtResource("1_xjxj6")
+theme_override_font_sizes/font_size = 4
+text = "Equip"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme_override_fonts/font = ExtResource("1_xjxj6")
+theme_override_font_sizes/font_size = 4
+text = "Split"

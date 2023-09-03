@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://lqftbtrsjcu3"]
+
+[ext_resource type="Texture2D" uid="uid://c07ccinjo33g3" path="res://Art/Action RPG Resources/UI/HeartUIFull.png" id="1_nt0qw"]
+
+[node name="FullHeart" type="TextureRect"]
+offset_right = 20.0
+offset_bottom = 20.0
+texture = ExtResource("1_nt0qw")

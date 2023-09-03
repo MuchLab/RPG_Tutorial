@@ -1,0 +1,406 @@
+[gd_scene load_steps=37 format=3 uid="uid://5sxn7t16y27w"]
+
+[ext_resource type="Script" path="res://Character/Enemy/bat.gd" id="1_qj5wy"]
+[ext_resource type="Texture2D" uid="uid://cd7bktcxaih6x" path="res://Art/Action RPG Resources/Enemies/Bat.png" id="1_usyle"]
+[ext_resource type="Texture2D" uid="uid://7pteaf0m1bbo" path="res://Art/Action RPG Resources/Shadows/SmallShadow.png" id="2_tk6j7"]
+[ext_resource type="Script" path="res://Character/CharacterStateMachine.gd" id="4_dqsca"]
+[ext_resource type="Texture2D" uid="uid://chkk7a6aedfdx" path="res://Art/Action RPG Resources/Effects/EnemyDeathEffect.png" id="4_r3qw7"]
+[ext_resource type="Script" path="res://Character/Enemy/FlyState.gd" id="5_5s64t"]
+[ext_resource type="Script" path="res://Character/Enemy/HurtState.gd" id="6_63fv1"]
+[ext_resource type="PackedScene" uid="uid://dfic4451jw7q8" path="res://Utils/hurt_box.tscn" id="6_imhnd"]
+[ext_resource type="Script" path="res://Character/Enemy/DeathState.gd" id="8_wi5r4"]
+[ext_resource type="Script" path="res://Character/Enemy/ChaseState.gd" id="9_hhcvp"]
+[ext_resource type="Script" path="res://Character/Damageable.gd" id="9_tl31n"]
+[ext_resource type="Script" path="res://Character/Player/StateDebugLabel.gd" id="10_075c6"]
+[ext_resource type="Script" path="res://Character/Enemy/WanderState.gd" id="10_pwn7v"]
+[ext_resource type="Script" path="res://Character/Enemy/BloodBar.gd" id="13_shbl3"]
+[ext_resource type="PackedScene" uid="uid://c1poiwck4jl41" path="res://Utils/hit_box.tscn" id="14_s8fxu"]
+[ext_resource type="PackedScene" uid="uid://b7ponbilr757k" path="res://Character/Enemy/soft_collision.tscn" id="15_h0p8s"]
+[ext_resource type="Script" path="res://Utils/hit_box.gd" id="15_wbs23"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hc7c8"]
+radius = 3.0
+height = 10.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0rvbp"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 1.5
+scale_max = 2.0
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_5vjj8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DeathEffect:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HurtPartical:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_g4ha4"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeathEffect:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_p7ikk"]
+resource_name = "fly"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_usyle")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_wamia"]
+resource_name = "hurt"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_usyle")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.631373, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.174533, -0.174533, 0.174533, -0.174533, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HurtPartical:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_50gx2"]
+_data = {
+"RESET": SubResource("Animation_5vjj8"),
+"death": SubResource("Animation_g4ha4"),
+"fly": SubResource("Animation_p7ikk"),
+"hurt": SubResource("Animation_wamia")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ifu1f"]
+animation = &"death"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mrood"]
+animation = &"fly"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fvwup"]
+animation = &"hurt"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wqt4n"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5y3mf"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_if1a7"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mg3at"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_7b0t1"]
+states/Start/position = Vector2(165, 111.25)
+states/death/node = SubResource("AnimationNodeAnimation_ifu1f")
+states/death/position = Vector2(472.5, 110.375)
+states/fly/node = SubResource("AnimationNodeAnimation_mrood")
+states/fly/position = Vector2(320.5, 111.563)
+states/hurt/node = SubResource("AnimationNodeAnimation_fvwup")
+states/hurt/position = Vector2(384, 25.5)
+transitions = ["Start", "fly", SubResource("AnimationNodeStateMachineTransition_wqt4n"), "fly", "hurt", SubResource("AnimationNodeStateMachineTransition_5y3mf"), "hurt", "death", SubResource("AnimationNodeStateMachineTransition_if1a7"), "hurt", "fly", SubResource("AnimationNodeStateMachineTransition_mg3at")]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x8t35"]
+radius = 7.0
+height = 18.0
+
+[sub_resource type="GDScript" id="GDScript_f57gw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ke37p"]
+radius = 77.7817
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r00fn"]
+radius = 4.0
+height = 8.0
+
+[node name="Bat" type="CharacterBody2D"]
+collision_layer = 16
+script = ExtResource("1_qj5wy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_hc7c8")
+
+[node name="HurtPartical" type="GPUParticles2D" parent="."]
+position = Vector2(0, -13)
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_0rvbp")
+lifetime = 2.0
+one_shot = true
+speed_scale = 3.0
+explosiveness = 0.3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.99, 0.999167, 1)
+position = Vector2(-1, -12)
+texture = ExtResource("1_usyle")
+hframes = 5
+frame = 1
+
+[node name="Shadow" type="Sprite2D" parent="."]
+texture = ExtResource("2_tk6j7")
+
+[node name="DeathEffect" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -16)
+texture = ExtResource("4_r3qw7")
+hframes = 10
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_50gx2")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_7b0t1")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character", "animation_tree")]
+script = ExtResource("4_dqsca")
+current_state = NodePath("IdleState")
+character = NodePath("..")
+animation_tree = NodePath("../AnimationTree")
+
+[node name="IdleState" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("5_5s64t")
+should_wander = true
+
+[node name="SwitchTimer" type="Timer" parent="CharacterStateMachine/IdleState"]
+one_shot = true
+
+[node name="HurtState" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("damageable", "fly_state", "death_state")]
+script = ExtResource("6_63fv1")
+damageable = NodePath("../../HurtBox/Damageable")
+fly_state = NodePath("../IdleState")
+death_state = NodePath("../DeathState")
+can_direction = false
+
+[node name="DeathState" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("hit_box")]
+script = ExtResource("8_wi5r4")
+hit_box = NodePath("../../HitBox")
+can_move = false
+
+[node name="ChaseState" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("soft_collision", "idle_state")]
+script = ExtResource("9_hhcvp")
+soft_collision = NodePath("../../SoftCollision")
+idle_state = NodePath("../IdleState")
+
+[node name="WanderState" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("idle_state")]
+script = ExtResource("10_pwn7v")
+idle_state = NodePath("../IdleState")
+should_wander = true
+
+[node name="BloodBar" type="ProgressBar" parent="." node_paths=PackedStringArray("damageable")]
+self_modulate = Color(1, 0, 0, 1)
+offset_left = -16.0
+offset_top = -29.0
+offset_right = 16.0
+offset_bottom = -25.0
+show_percentage = false
+script = ExtResource("13_shbl3")
+damageable = NodePath("../HurtBox/Damageable")
+
+[node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
+offset_left = -46.0
+offset_top = -42.0
+offset_right = 51.0
+offset_bottom = -16.0
+text = "State:"
+script = ExtResource("10_075c6")
+state_machine = NodePath("../CharacterStateMachine")
+
+[node name="HurtBox" parent="." node_paths=PackedStringArray("character") instance=ExtResource("6_imhnd")]
+position = Vector2(-9, 5)
+collision_layer = 16
+collision_mask = 0
+character = NodePath("..")
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(9, -19)
+shape = SubResource("CapsuleShape2D_x8t35")
+
+[node name="Damageable" type="Node" parent="HurtBox"]
+script = ExtResource("9_tl31n")
+
+[node name="Timer2" type="Timer" parent="HurtBox"]
+one_shot = true
+
+[node name="HitBox" parent="." node_paths=PackedStringArray("character") instance=ExtResource("14_s8fxu")]
+position = Vector2(-57, 11)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("15_wbs23")
+damage = 5.0
+character = NodePath("..")
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(57, -27)
+disabled = false
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = SubResource("GDScript_f57gw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+visible = false
+shape = SubResource("CircleShape2D_ke37p")
+
+[node name="SoftCollision" parent="." instance=ExtResource("15_h0p8s")]
+
+[node name="CollisionShape2D" parent="SoftCollision" index="0"]
+shape = SubResource("CapsuleShape2D_r00fn")
+
+[connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/DeathState" method="_on_animation_tree_animation_finished"]
+[connection signal="timeout" from="CharacterStateMachine/IdleState/SwitchTimer" to="CharacterStateMachine/IdleState" method="_on_switch_timer_timeout"]
+[connection signal="area_entered" from="HitBox" to="HitBox" method="_on_area_entered"]
+[connection signal="body_entered" from="PlayerDetector" to="CharacterStateMachine/ChaseState" method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="PlayerDetector" to="CharacterStateMachine/ChaseState" method="_on_player_detector_body_exited"]
+
+[editable path="HurtBox"]
+[editable path="HitBox"]
+[editable path="SoftCollision"]

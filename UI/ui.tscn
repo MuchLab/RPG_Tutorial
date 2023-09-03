@@ -1,0 +1,245 @@
+[gd_scene load_steps=15 format=3 uid="uid://cvtj18enfvmsf"]
+
+[ext_resource type="Script" path="res://UI/ui.gd" id="1_i0mho"]
+[ext_resource type="Script" path="res://UI/BloorBar.gd" id="1_tfa45"]
+[ext_resource type="Script" path="res://UI/Chat.gd" id="2_ea5d4"]
+[ext_resource type="FontFile" uid="uid://cl0hwx6qofh88" path="res://Fonts/HanaleiFill-Regular.ttf" id="2_rjqnp"]
+[ext_resource type="Script" path="res://UI/Inventory.gd" id="5_377ve"]
+[ext_resource type="Script" path="res://UI/SplitBox.gd" id="6_3sp38"]
+[ext_resource type="PackedScene" uid="uid://c0k4wvj8mghwk" path="res://UI/invitem.tscn" id="6_101xl"]
+
+[sub_resource type="Theme" id="Theme_b44hl"]
+default_font = ExtResource("2_rjqnp")
+default_font_size = 10
+
+[sub_resource type="Theme" id="Theme_ugops"]
+default_font_size = 0
+
+[sub_resource type="Theme" id="Theme_pliho"]
+default_font = ExtResource("2_rjqnp")
+default_font_size = 8
+
+[sub_resource type="Theme" id="Theme_nv20t"]
+default_font = ExtResource("2_rjqnp")
+default_font_size = 10
+
+[sub_resource type="Theme" id="Theme_6xwxn"]
+default_font = ExtResource("2_rjqnp")
+default_font_size = 5
+
+[sub_resource type="Theme" id="Theme_bxnqp"]
+default_font = ExtResource("2_rjqnp")
+default_font_size = 5
+
+[sub_resource type="Theme" id="Theme_6wqei"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_i0mho")
+
+[node name="BloorBar" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 384.0
+offset_bottom = 20.0
+script = ExtResource("1_tfa45")
+
+[node name="Chat" type="Panel" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -127.0
+offset_right = 207.0
+grow_vertical = 0
+script = ExtResource("2_ea5d4")
+
+[node name="Title" type="Label" parent="Chat"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 17.0
+grow_horizontal = 2
+theme = SubResource("Theme_b44hl")
+text = "Chat"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Input" type="TextEdit" parent="Chat"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_ugops")
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("2_rjqnp")
+theme_override_font_sizes/font_size = 8
+text = "This is a Test."
+placeholder_text = "Input the message from here"
+
+[node name="Memo" type="RichTextLabel" parent="Chat"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.5
+offset_top = -43.5
+offset_right = 98.5
+offset_bottom = 43.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_pliho")
+bbcode_enabled = true
+text = "Let's Test, it looks so nice right now"
+
+[node name="Inventory" type="Panel" parent="."]
+offset_left = 219.0
+offset_top = 10.0
+offset_right = 359.0
+offset_bottom = 198.0
+script = ExtResource("5_377ve")
+
+[node name="Title" type="Label" parent="Inventory"]
+layout_mode = 2
+offset_right = 140.0
+offset_bottom = 17.0
+grow_horizontal = 2
+theme = SubResource("Theme_nv20t")
+text = "Inventory"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Inventory"]
+layout_mode = 2
+offset_left = 2.0
+offset_top = 17.0
+offset_right = 136.0
+offset_bottom = 167.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical_scroll_mode = 2
+scroll_deadzone = 3
+
+[node name="GridContainer" type="GridContainer" parent="Inventory/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 5
+
+[node name="Close" type="Button" parent="Inventory"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 174.0
+offset_right = 133.0
+offset_bottom = 187.0
+theme_override_fonts/font = ExtResource("2_rjqnp")
+theme_override_font_sizes/font_size = 3
+text = "Close
+"
+
+[node name="Merge" type="Button" parent="Inventory"]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 174.0
+offset_right = 99.0
+offset_bottom = 187.0
+theme_override_fonts/font = ExtResource("2_rjqnp")
+theme_override_font_sizes/font_size = 3
+text = "Merge"
+
+[node name="SplitBox" type="Panel" parent="."]
+visible = false
+offset_left = 80.0
+offset_top = 35.0
+offset_right = 207.0
+offset_bottom = 77.0
+script = ExtResource("6_3sp38")
+metadata/_edit_group_ = true
+
+[node name="Title" type="Label" parent="SplitBox"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 11.0
+grow_horizontal = 2
+theme = SubResource("Theme_6xwxn")
+text = "Splitor"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InvItem" parent="SplitBox" instance=ExtResource("6_101xl")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 5.0
+offset_top = 13.0
+offset_right = 30.0
+offset_bottom = 38.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="InvName" type="Label" parent="SplitBox"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 11.0
+offset_right = 84.0
+offset_bottom = 19.0
+theme = SubResource("Theme_bxnqp")
+theme_override_constants/line_spacing = 0
+text = "My Item Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="SplitBox"]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 22.0
+offset_right = 273.0
+offset_bottom = 38.0
+scale = Vector2(0.3, 0.3)
+
+[node name="LineEdit" type="LineEdit" parent="SplitBox"]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 21.0
+offset_right = 175.063
+offset_bottom = 56.0
+scale = Vector2(0.2, 0.2)
+alignment = 1
+
+[node name="CloseButton" type="Button" parent="SplitBox"]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 30.0
+offset_right = 143.0
+offset_bottom = 47.0
+scale = Vector2(0.5, 0.5)
+theme = SubResource("Theme_6wqei")
+theme_override_font_sizes/font_size = 6
+text = "Close
+"
+
+[node name="SplitButton" type="Button" parent="SplitBox"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 30.0
+offset_right = 118.0
+offset_bottom = 47.0
+scale = Vector2(0.5, 0.5)
+theme = SubResource("Theme_6wqei")
+theme_override_font_sizes/font_size = 6
+text = "Split"
+
+[connection signal="gui_input" from="Chat/Input" to="Chat" method="_on_input_gui_input"]
+[connection signal="gui_input" from="Inventory/ScrollContainer/GridContainer" to="Inventory/ScrollContainer/GridContainer" method="_on_gui_input"]
+[connection signal="pressed" from="Inventory/Close" to="Inventory" method="_on_close_pressed"]
+[connection signal="item_splited" from="SplitBox" to="Inventory" method="_on_split_box_item_splited"]
+[connection signal="value_changed" from="SplitBox/HSlider" to="SplitBox" method="_on_h_slider_value_changed"]
+[connection signal="text_changed" from="SplitBox/LineEdit" to="SplitBox" method="_on_line_edit_text_changed"]
+[connection signal="pressed" from="SplitBox/CloseButton" to="SplitBox" method="_on_close_button_pressed"]
+[connection signal="pressed" from="SplitBox/SplitButton" to="SplitBox" method="_on_split_button_pressed"]

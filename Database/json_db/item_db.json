@@ -1,0 +1,18 @@
+{
+	"Glove":{
+		"texture": "craftable/Glove.png",
+		"stackable": false,
+		"type": "Crafting Material",
+		"weight": 0.1,
+		"sell_price": 0.1,
+		"description": "This is Glove."
+	},
+	"Helmet":{
+		"texture": "craftable/Helmet.png",
+		"stackable": true,
+		"type": "Crafting Material",
+		"weight": 0.1,
+		"sell_price": 0.1,
+		"description": "This is Helmet."
+	}
+}

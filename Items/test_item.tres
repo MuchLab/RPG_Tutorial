@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="EquippableItem" load_steps=2 format=3 uid="uid://crcsikglmv2gk"]
+
+[ext_resource type="Script" path="res://Items/equippable_item.gd" id="1_me2fo"]
+
+[resource]
+script = ExtResource("1_me2fo")
+display_name = "Test Item"
