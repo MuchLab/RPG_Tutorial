@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_de3le")
 effected_types = Array[Resource("res://Environment/Types/resource_node_type.gd")]([ExtResource("1_50j04")])
-min_damage = 1
-max_damage = 1
+min_amount = 1
+max_amount = 1
 display_name = "Ferruginous Pickaxe"
 texture = ExtResource("3_dmw3m")

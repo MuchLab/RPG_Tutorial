@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://4r0jotepnh7y" path="res://Art/Action RPG Resources/World/GrassBackground.png" id="1_rgvla"]
 [ext_resource type="Texture2D" uid="uid://dn41rjmebjbh1" path="res://Art/Action RPG Resources/World/DirtTileset.png" id="2_3t1p1"]
-[ext_resource type="PackedScene" uid="uid://d4fiwt7ju5s7k" path="res://Character/Player/player.tscn" id="2_hr1q5"]
+[ext_resource type="PackedScene" uid="uid://c0fj5xdiggsev" path="res://Character/Player/player.tscn" id="2_hr1q5"]
 [ext_resource type="PackedScene" uid="uid://ch0h2scbsbyx5" path="res://Environment/bush.tscn" id="2_k3pym"]
 [ext_resource type="Texture2D" uid="uid://dwefivqcawill" path="res://Art/Action RPG Resources/World/CliffTileset.png" id="4_o23ni"]
 [ext_resource type="PackedScene" uid="uid://cpbjyubfl1fqr" path="res://Environment/grass.tscn" id="6_ulmfi"]

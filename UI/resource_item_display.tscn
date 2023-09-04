@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://blg2si310eequ"]
+
+[ext_resource type="Script" path="res://UI/ResourceItemDisplay.gd" id="1_ca0mn"]
+[ext_resource type="Texture2D" uid="uid://cjjdk0xocrgw2" path="res://Art/Action RPG Resources/Pickups/Wood.png" id="2_vw0e7"]
+[ext_resource type="FontFile" uid="uid://cl0hwx6qofh88" path="res://Fonts/HanaleiFill-Regular.ttf" id="3_tewda"]
+
+[node name="ResourceItemDisplay" type="HBoxContainer"]
+layout_direction = 2
+offset_right = 27.0
+offset_bottom = 17.0
+script = ExtResource("1_ca0mn")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_vw0e7")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_tewda")
+theme_override_font_sizes/font_size = 10
+text = "0
+"
+horizontal_alignment = 1
+vertical_alignment = 1

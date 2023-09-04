@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://d4fiwt7ju5s7k"]
+[gd_scene load_steps=74 format=3 uid="uid://c0fj5xdiggsev"]
 
 [ext_resource type="Shader" path="res://Shader/Flash.gdshader" id="1_vdvp8"]
 [ext_resource type="Texture2D" uid="uid://c2dvovlc0qgx7" path="res://Art/Action RPG Resources/Player/player-hurt-1.png" id="2_awdea"]
@@ -20,9 +20,11 @@
 [ext_resource type="Script" path="res://Character/Player/HandEquip.gd" id="14_tuoxf"]
 [ext_resource type="Texture2D" uid="uid://dfqx50oef12oc" path="res://Art/Action RPG Resources/Equips/Axe.png" id="15_qdwgc"]
 [ext_resource type="Resource" uid="uid://gu116i464i8i" path="res://Items/ferruginous_pickaxe.tres" id="17_nw54l"]
+[ext_resource type="Script" path="res://Character/Player/Inventory.gd" id="21_c6e6i"]
 
 [sub_resource type="GDScript" id="GDScript_xlq0g"]
 script/source = "extends CharacterBody2D
+
 @onready var damageable: Node = $Damageable
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -1489,7 +1491,7 @@ height = 22.0
 shader = ExtResource("1_vdvp8")
 shader_parameter/flash_state = 0.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 collision_mask = 33
 script = SubResource("GDScript_xlq0g")
@@ -1623,6 +1625,13 @@ position = Vector2(0, -9)
 texture = ExtResource("2_t8o78")
 region_enabled = true
 region_rect = Rect2(0, 0, 64, 64)
+
+[node name="Inventory" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("21_c6e6i")
 
 [connection signal="animation_looped" from="PlayerDeath" to="CharacterStateMachine/DeathState" method="_on_player_death_animation_looped"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/SwingState" method="_on_animation_tree_animation_finished"]
