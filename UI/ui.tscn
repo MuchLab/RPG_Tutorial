@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cvtj18enfvmsf"]
+[gd_scene load_steps=16 format=3 uid="uid://cvtj18enfvmsf"]
 
 [ext_resource type="Script" path="res://UI/ui.gd" id="1_i0mho"]
 [ext_resource type="Script" path="res://UI/BloorBar.gd" id="1_tfa45"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://UI/Inventory.gd" id="5_377ve"]
 [ext_resource type="Script" path="res://UI/SplitBox.gd" id="6_3sp38"]
 [ext_resource type="PackedScene" uid="uid://c0k4wvj8mghwk" path="res://UI/invitem.tscn" id="6_101xl"]
+[ext_resource type="Script" path="res://UI/HorizontalInventory.gd" id="8_moong"]
 
 [sub_resource type="Theme" id="Theme_b44hl"]
 default_font = ExtResource("2_rjqnp")
@@ -234,6 +235,13 @@ scale = Vector2(0.5, 0.5)
 theme = SubResource("Theme_6wqei")
 theme_override_font_sizes/font_size = 6
 text = "Split"
+
+[node name="HorizontalInventory" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_moong")
 
 [connection signal="gui_input" from="Chat/Input" to="Chat" method="_on_input_gui_input"]
 [connection signal="gui_input" from="Inventory/ScrollContainer/GridContainer" to="Inventory/ScrollContainer/GridContainer" method="_on_gui_input"]

@@ -18,7 +18,7 @@ func state_process(_delta : float):
 func state_input(event : InputEvent):
 	if event.is_action_pressed("roll"):
 		next_state = roll_state
-	if event.is_action_pressed("attack"):
+	if event.is_action_pressed("swing"):
 		next_state = swing_state
 		
 func on_enter():

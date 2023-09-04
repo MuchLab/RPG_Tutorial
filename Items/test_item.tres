@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="EquippableItem" load_steps=2 format=3 uid="uid://crcsikglmv2gk"]
+[gd_resource type="Resource" script_class="EquippableItem" load_steps=3 format=3 uid="uid://crcsikglmv2gk"]
 
 [ext_resource type="Script" path="res://Items/equippable_item.gd" id="1_me2fo"]
+[ext_resource type="Texture2D" uid="uid://cb2c8jwg7f5mv" path="res://Art/Action RPG Resources/Equips/Sword.png" id="2_8h5on"]
 
 [resource]
 script = ExtResource("1_me2fo")
 display_name = "Test Item"
+texture = ExtResource("2_8h5on")

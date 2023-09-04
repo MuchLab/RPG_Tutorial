@@ -6,7 +6,6 @@ signal interrupt_state(state : State)
 
 @export var can_move : bool = true
 @export var can_direction : bool = true
-@export var should_wander : bool = false
 
 const PLAYBACK_PARAMETER_STR : String = "parameters/playback"
 
