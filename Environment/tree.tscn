@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://r3v0ygkwr835" path="res://Art/Action RPG Resources/World/Tree.png" id="1_bmuca"]
 [ext_resource type="Script" path="res://Environment/tree.gd" id="1_gel5j"]
 [ext_resource type="Shader" path="res://Shader/Flash.gdshader" id="2_2hwr1"]
-[ext_resource type="Resource" uid="uid://mbsx8gnsisus" path="res://Environment/Types/minable.tres" id="2_j0mgt"]
+[ext_resource type="Resource" uid="uid://kjnjl6sf81vv" path="res://Environment/Types/axeable.tres" id="2_iji5y"]
 [ext_resource type="PackedScene" uid="uid://bsx4rololljo7" path="res://Environment/Pickups/pickup_wood.tscn" id="3_0brtc"]
 [ext_resource type="Script" path="res://Environment/Hurtbox.gd" id="3_gk1b4"]
 
@@ -89,7 +89,7 @@ height = 26.0
 collision_layer = 32
 collision_mask = 2
 script = ExtResource("1_gel5j")
-node_types = Array[Resource("res://Environment/Types/resource_node_type.gd")]([ExtResource("2_j0mgt")])
+node_types = Array[Resource("res://Environment/Types/resource_node_type.gd")]([ExtResource("2_iji5y")])
 starting_resources = 5
 pickup_type = ExtResource("3_0brtc")
 

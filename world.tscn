@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://x37apmwvs2l3"]
+[gd_scene load_steps=15 format=3 uid="uid://x37apmwvs2l3"]
 
 [ext_resource type="Texture2D" uid="uid://4r0jotepnh7y" path="res://Art/Action RPG Resources/World/GrassBackground.png" id="1_rgvla"]
 [ext_resource type="Texture2D" uid="uid://dn41rjmebjbh1" path="res://Art/Action RPG Resources/World/DirtTileset.png" id="2_3t1p1"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://5sxn7t16y27w" path="res://Character/Enemy/bat.tscn" id="7_m04gl"]
 [ext_resource type="PackedScene" uid="uid://dxe3ajibeuoy4" path="res://Environment/tree.tscn" id="8_006gv"]
 [ext_resource type="PackedScene" uid="uid://cvtj18enfvmsf" path="res://UI/ui.tscn" id="8_314pw"]
+[ext_resource type="PackedScene" uid="uid://brfbs3pbfl2le" path="res://Environment/resource_rock.tscn" id="9_1m0ea"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ov2ux"]
 texture = ExtResource("2_3t1p1")
@@ -822,6 +823,41 @@ position = Vector2(-68, 280)
 
 [node name="Tree15" parent="YSort/Tree" instance=ExtResource("8_006gv")]
 position = Vector2(-87, -39)
+
+[node name="Rock" type="Node2D" parent="YSort"]
+
+[node name="Resource_Rock" parent="YSort/Rock" instance=ExtResource("9_1m0ea")]
+position = Vector2(189, -102)
+
+[node name="Resource_Rock2" parent="YSort/Rock" instance=ExtResource("9_1m0ea")]
+position = Vector2(264, -24)
+
+[node name="Resource_Rock3" parent="YSort/Rock" instance=ExtResource("9_1m0ea")]
+position = Vector2(-94, -82)
+
+[node name="Resource_Rock4" parent="YSort/Rock" instance=ExtResource("9_1m0ea")]
+position = Vector2(-196, 361)
+
+[node name="Resource_Rock5" parent="YSort/Rock" instance=ExtResource("9_1m0ea")]
+position = Vector2(-196, 100)
+
+[node name="Resource_Rock6" parent="YSort/Rock" instance=ExtResource("9_1m0ea")]
+position = Vector2(397, 403)
+
+[node name="Resource_Rock7" parent="YSort/Rock" instance=ExtResource("9_1m0ea")]
+position = Vector2(576, 225)
+
+[node name="Resource_Rock8" parent="YSort/Rock" instance=ExtResource("9_1m0ea")]
+position = Vector2(182, 83)
+
+[node name="Resource_Rock9" parent="YSort/Rock" instance=ExtResource("9_1m0ea")]
+position = Vector2(100, 254)
+
+[node name="Resource_Rock10" parent="YSort/Rock" instance=ExtResource("9_1m0ea")]
+position = Vector2(517, 57)
+
+[node name="Resource_Rock11" parent="YSort/Rock" instance=ExtResource("9_1m0ea")]
+position = Vector2(-65, 117)
 
 [node name="UI" parent="." instance=ExtResource("8_314pw")]
 

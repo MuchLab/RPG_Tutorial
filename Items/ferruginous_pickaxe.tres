@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://mbsx8gnsisus" path="res://Environment/Types/minable.tres" id="1_50j04"]
 [ext_resource type="Script" path="res://Items/HarvestingTool.gd" id="1_de3le"]
-[ext_resource type="Texture2D" uid="uid://dfqx50oef12oc" path="res://Art/Action RPG Resources/Equips/Axe.png" id="3_dmw3m"]
+[ext_resource type="Texture2D" uid="uid://ctabqdp4sdgxq" path="res://Art/Action RPG Resources/Equips/Pickaxe.png" id="2_qsq26"]
 
 [resource]
 script = ExtResource("1_de3le")
@@ -10,4 +10,4 @@ effected_types = Array[Resource("res://Environment/Types/resource_node_type.gd")
 min_amount = 1
 max_amount = 1
 display_name = "Ferruginous Pickaxe"
-texture = ExtResource("3_dmw3m")
+texture = ExtResource("2_qsq26")

@@ -18,7 +18,7 @@
 [ext_resource type="Script" path="res://Character/Player/Hitbox.gd" id="11_cibhj"]
 [ext_resource type="Script" path="res://Character/Player/Hurtbox.gd" id="12_w87vf"]
 [ext_resource type="Script" path="res://Character/Player/HandEquip.gd" id="14_tuoxf"]
-[ext_resource type="Texture2D" uid="uid://dfqx50oef12oc" path="res://Art/Action RPG Resources/Equips/Axe.png" id="15_qdwgc"]
+[ext_resource type="Texture2D" uid="uid://ctabqdp4sdgxq" path="res://Art/Action RPG Resources/Equips/Pickaxe.png" id="15_el6wm"]
 [ext_resource type="Resource" uid="uid://gu116i464i8i" path="res://Items/ferruginous_pickaxe.tres" id="17_nw54l"]
 [ext_resource type="Script" path="res://Character/Player/Inventory.gd" id="21_c6e6i"]
 
@@ -1593,7 +1593,7 @@ script = ExtResource("10_lcu0a")
 [node name="HandEquip" type="Sprite2D" parent="HitBoxPivot"]
 position = Vector2(16, 2)
 rotation = 0.785398
-texture = ExtResource("15_qdwgc")
+texture = ExtResource("15_el6wm")
 script = ExtResource("14_tuoxf")
 equipped_item = ExtResource("17_nw54l")
 
