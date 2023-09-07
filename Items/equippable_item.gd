@@ -1,6 +1,10 @@
-extends Resource
+extends Item
 
 class_name EquippableItem
 
-@export var display_name : String
-@export var texture : Texture2D
+var character : CharacterBody2D = null
+
+func interact_with_body(body : Node2D):
+	pass
+func interact_with_area(area : Area2D):
+	pass

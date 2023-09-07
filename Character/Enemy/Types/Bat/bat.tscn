@@ -1,22 +1,22 @@
 [gd_scene load_steps=38 format=3 uid="uid://5sxn7t16y27w"]
 
-[ext_resource type="Script" path="res://Character/Enemy/bat.gd" id="1_qj5wy"]
+[ext_resource type="Script" path="res://Character/Enemy/Types/Bat/bat.gd" id="1_qj5wy"]
 [ext_resource type="Texture2D" uid="uid://cd7bktcxaih6x" path="res://Art/Action RPG Resources/Enemies/Bat.png" id="1_usyle"]
 [ext_resource type="Texture2D" uid="uid://7pteaf0m1bbo" path="res://Art/Action RPG Resources/Shadows/SmallShadow.png" id="2_tk6j7"]
 [ext_resource type="Script" path="res://Character/CharacterStateMachine.gd" id="4_dqsca"]
 [ext_resource type="Texture2D" uid="uid://chkk7a6aedfdx" path="res://Art/Action RPG Resources/Effects/EnemyDeathEffect.png" id="4_r3qw7"]
-[ext_resource type="Script" path="res://Character/Enemy/FlyState.gd" id="5_5s64t"]
+[ext_resource type="Script" path="res://Character/Enemy/Types/Bat/FlyState.gd" id="5_5s64t"]
 [ext_resource type="Script" path="res://Character/Enemy/HurtState.gd" id="6_63fv1"]
-[ext_resource type="Script" path="res://Character/Enemy/DeathState.gd" id="8_wi5r4"]
-[ext_resource type="Script" path="res://Character/Enemy/ChaseState.gd" id="9_hhcvp"]
+[ext_resource type="Script" path="res://Character/Enemy/Types/Bat/DeathState.gd" id="8_wi5r4"]
+[ext_resource type="Script" path="res://Character/Enemy/Types/Bat/ChaseState.gd" id="9_hhcvp"]
 [ext_resource type="Script" path="res://Character/Damageable.gd" id="9_tl31n"]
 [ext_resource type="Script" path="res://Character/Player/StateDebugLabel.gd" id="10_075c6"]
-[ext_resource type="Script" path="res://Character/Enemy/WanderState.gd" id="10_pwn7v"]
-[ext_resource type="Script" path="res://Character/Enemy/ResumeState.gd" id="11_upvie"]
-[ext_resource type="Script" path="res://Character/Enemy/BloodBar.gd" id="13_shbl3"]
-[ext_resource type="PackedScene" uid="uid://b7ponbilr757k" path="res://Character/Enemy/soft_collision.tscn" id="15_h0p8s"]
-[ext_resource type="Script" path="res://Character/Enemy/Hitbox.gd" id="16_pdfup"]
-[ext_resource type="Script" path="res://Character/Enemy/Hurtbox.gd" id="17_4jjx3"]
+[ext_resource type="Script" path="res://Character/Enemy/Types/Bat/WanderState.gd" id="10_pwn7v"]
+[ext_resource type="Script" path="res://Character/Enemy/Types/Bat/ResumeState.gd" id="11_upvie"]
+[ext_resource type="Script" path="res://Character/Enemy/Types/Bat/BloodBar.gd" id="13_shbl3"]
+[ext_resource type="PackedScene" uid="uid://b7ponbilr757k" path="res://Character/Enemy/Types/Bat/soft_collision.tscn" id="15_h0p8s"]
+[ext_resource type="Resource" uid="uid://bsgmckgeuvf5c" path="res://Items/DamagingTool/Types/immediate_damage.tres" id="16_d1g7m"]
+[ext_resource type="Script" path="res://Character/Enemy/Types/Bat/Hitbox.gd" id="16_pdfup"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hc7c8"]
 radius = 3.0
@@ -312,7 +312,6 @@ animation_tree = NodePath("../AnimationTree")
 [node name="IdleState" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("wander_state")]
 script = ExtResource("5_5s64t")
 wander_state = NodePath("../WanderState")
-should_wander = true
 
 [node name="SwitchTimer" type="Timer" parent="CharacterStateMachine/IdleState"]
 
@@ -337,16 +336,12 @@ resume_state = NodePath("../ResumeState")
 [node name="WanderState" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("idle_state")]
 script = ExtResource("10_pwn7v")
 idle_state = NodePath("../IdleState")
-should_wander = true
 
 [node name="ResumeState" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("idle_state")]
 script = ExtResource("11_upvie")
 idle_state = NodePath("../IdleState")
 
-[node name="Damageable" type="Node" parent="."]
-script = ExtResource("9_tl31n")
-
-[node name="BloodBar" type="ProgressBar" parent="." node_paths=PackedStringArray("damageable")]
+[node name="BloodBar" type="ProgressBar" parent="."]
 self_modulate = Color(1, 0, 0, 1)
 offset_left = -16.0
 offset_top = -29.0
@@ -354,9 +349,9 @@ offset_right = 16.0
 offset_bottom = -25.0
 show_percentage = false
 script = ExtResource("13_shbl3")
-damageable = NodePath("../Damageable")
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
+visible = false
 offset_left = -46.0
 offset_top = -42.0
 offset_right = 51.0
@@ -369,19 +364,20 @@ state_machine = NodePath("../CharacterStateMachine")
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("16_pdfup")
-damage = 5
 hitting_character = NodePath("..")
+effected_types = Array[Resource("res://Items/DamagingTool/Types/damage_node_type.gd")]([ExtResource("16_d1g7m")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, -18)
 shape = SubResource("CapsuleShape2D_k44t0")
 
-[node name="Hurtbox" type="Area2D" parent="."]
+[node name="Damageable" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 0
-script = ExtResource("17_4jjx3")
+script = ExtResource("9_tl31n")
+damage_node_types = Array[Resource("res://Items/DamagingTool/Types/damage_node_type.gd")]([ExtResource("16_d1g7m")])
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damageable"]
 position = Vector2(0, -13)
 shape = SubResource("CapsuleShape2D_xa8n8")
 
@@ -401,9 +397,11 @@ shape = SubResource("CapsuleShape2D_r00fn")
 
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/DeathState" method="_on_animation_tree_animation_finished"]
 [connection signal="timeout" from="CharacterStateMachine/IdleState/SwitchTimer" to="CharacterStateMachine/IdleState" method="_on_switch_timer_timeout"]
-[connection signal="on_state_hit" from="Damageable" to="CharacterStateMachine/HurtState" method="_on_damageable_on_state_hit"]
 [connection signal="area_entered" from="Hitbox" to="Hitbox" method="_on_area_entered"]
-[connection signal="on_hurt" from="Hurtbox" to="Damageable" method="_on_hurtbox_on_hurt"]
+[connection signal="blood_bar_changed" from="Damageable" to="BloodBar" method="_on_damageable_blood_bar_changed"]
+[connection signal="blood_bar_initialized" from="Damageable" to="BloodBar" method="_on_hurtbox_blood_bar_initialized"]
+[connection signal="state_death_trigered" from="Damageable" to="CharacterStateMachine/DeathState" method="_on_damageable_state_death_trigered"]
+[connection signal="state_hurt_trigered" from="Damageable" to="CharacterStateMachine/HurtState" method="_on_damageable_state_hurt_trigered"]
 [connection signal="body_entered" from="PlayerDetector" to="CharacterStateMachine/ChaseState" method="_on_player_enter_detector_body_entered"]
 [connection signal="body_exited" from="PlayerDetector" to="CharacterStateMachine/ChaseState" method="_on_player_detector_body_exited"]
 

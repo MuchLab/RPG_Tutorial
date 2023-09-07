@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ImmediateDamageEffect" load_steps=2 format=3 uid="uid://d0njlxjrdocjy"]
+
+[ext_resource type="Script" path="res://Items/DamagingTool/DamageEffect/immediate_damage_effect.gd" id="1_r88cb"]
+
+[resource]
+script = ExtResource("1_r88cb")
+min_damage = 5
+max_damage = 5

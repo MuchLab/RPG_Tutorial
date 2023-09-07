@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://dgqahmamored"]
+
+[ext_resource type="Script" path="res://Hotbar.gd" id="1_k0j8t"]
+[ext_resource type="PackedScene" uid="uid://c0j4gxtlr28la" path="res://UI/item_button.tscn" id="2_j4p6l"]
+[ext_resource type="Resource" uid="uid://i1jno4ymdh1b" path="res://Items/ferruginous_axe.tres" id="3_ayct7"]
+[ext_resource type="Resource" uid="uid://gu116i464i8i" path="res://Items/ferruginous_pickaxe.tres" id="4_2fadt"]
+[ext_resource type="Resource" uid="uid://bi7qqp6m8hx0y" path="res://Items/DamagingTool/ferruginous_sword.tres" id="6_o7d2a"]
+[ext_resource type="Resource" uid="uid://cm2fwcvjw3ewx" path="res://Items/ferruginous_hammer.tres" id="6_uxlkt"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_0fsuq"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_l56ew"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_y2xfa"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_in0v6"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_ps081"]
+
+[node name="Hotbar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k0j8t")
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(1, 0.568627, 0, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -66.5
+offset_top = -32.0
+offset_right = 70.5
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="ItemButton" parent="Panel/MarginContainer/HBoxContainer" instance=ExtResource("2_j4p6l")]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_0fsuq")
+item = ExtResource("3_ayct7")
+
+[node name="ItemButton2" parent="Panel/MarginContainer/HBoxContainer" instance=ExtResource("2_j4p6l")]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_l56ew")
+item = ExtResource("4_2fadt")
+
+[node name="ItemButton3" parent="Panel/MarginContainer/HBoxContainer" instance=ExtResource("2_j4p6l")]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_y2xfa")
+item = ExtResource("6_uxlkt")
+
+[node name="ItemButton4" parent="Panel/MarginContainer/HBoxContainer" instance=ExtResource("2_j4p6l")]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_in0v6")
+item = ExtResource("6_o7d2a")
+
+[node name="ItemButton5" parent="Panel/MarginContainer/HBoxContainer" instance=ExtResource("2_j4p6l")]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_ps081")

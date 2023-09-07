@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://ch0h2scbsbyx5" path="res://Environment/bush.tscn" id="2_k3pym"]
 [ext_resource type="Texture2D" uid="uid://dwefivqcawill" path="res://Art/Action RPG Resources/World/CliffTileset.png" id="4_o23ni"]
 [ext_resource type="PackedScene" uid="uid://cpbjyubfl1fqr" path="res://Environment/grass.tscn" id="6_ulmfi"]
-[ext_resource type="PackedScene" uid="uid://5sxn7t16y27w" path="res://Character/Enemy/bat.tscn" id="7_m04gl"]
-[ext_resource type="PackedScene" uid="uid://dxe3ajibeuoy4" path="res://Environment/tree.tscn" id="8_006gv"]
+[ext_resource type="PackedScene" uid="uid://5sxn7t16y27w" path="res://Character/Enemy/Types/Bat/bat.tscn" id="7_m04gl"]
+[ext_resource type="PackedScene" uid="uid://dxe3ajibeuoy4" path="res://Environment/resource_tree.tscn" id="8_006gv"]
 [ext_resource type="PackedScene" uid="uid://cvtj18enfvmsf" path="res://UI/ui.tscn" id="8_314pw"]
 [ext_resource type="PackedScene" uid="uid://brfbs3pbfl2le" path="res://Environment/resource_rock.tscn" id="9_1m0ea"]
 
@@ -781,50 +781,81 @@ y_sort_enabled = true
 
 [node name="Tree" parent="YSort/Tree" instance=ExtResource("8_006gv")]
 position = Vector2(52, 20)
+launch_speed = null
+launch_duration = null
 
 [node name="Tree2" parent="YSort/Tree" instance=ExtResource("8_006gv")]
 position = Vector2(85, 94)
+launch_speed = null
+launch_duration = null
 
 [node name="Tree3" parent="YSort/Tree" instance=ExtResource("8_006gv")]
 position = Vector2(-122, 160)
+launch_speed = null
+launch_duration = null
 
 [node name="Tree4" parent="YSort/Tree" instance=ExtResource("8_006gv")]
 position = Vector2(37, 229)
+launch_speed = null
+launch_duration = null
 
 [node name="Tree5" parent="YSort/Tree" instance=ExtResource("8_006gv")]
 position = Vector2(164, 310)
+launch_speed = null
+launch_duration = null
 
 [node name="Tree6" parent="YSort/Tree" instance=ExtResource("8_006gv")]
 position = Vector2(203, 197)
+launch_speed = null
+launch_duration = null
 
 [node name="Tree7" parent="YSort/Tree" instance=ExtResource("8_006gv")]
 position = Vector2(407, 327)
+launch_speed = null
+launch_duration = null
 
 [node name="Tree8" parent="YSort/Tree" instance=ExtResource("8_006gv")]
 position = Vector2(551, 300)
+launch_speed = null
+launch_duration = null
 
 [node name="Tree9" parent="YSort/Tree" instance=ExtResource("8_006gv")]
 position = Vector2(442, 199)
+launch_speed = null
+launch_duration = null
 
 [node name="Tree10" parent="YSort/Tree" instance=ExtResource("8_006gv")]
 position = Vector2(516, 133)
+launch_speed = null
+launch_duration = null
 
 [node name="Tree11" parent="YSort/Tree" instance=ExtResource("8_006gv")]
 position = Vector2(413, 18)
+launch_speed = null
+launch_duration = null
 
 [node name="Tree12" parent="YSort/Tree" instance=ExtResource("8_006gv")]
 position = Vector2(490, -15)
+launch_speed = null
+launch_duration = null
 
 [node name="Tree13" parent="YSort/Tree" instance=ExtResource("8_006gv")]
 position = Vector2(340, -37)
+launch_speed = null
+launch_duration = null
 
 [node name="Tree14" parent="YSort/Tree" instance=ExtResource("8_006gv")]
 position = Vector2(-68, 280)
+launch_speed = null
+launch_duration = null
 
 [node name="Tree15" parent="YSort/Tree" instance=ExtResource("8_006gv")]
 position = Vector2(-87, -39)
+launch_speed = null
+launch_duration = null
 
 [node name="Rock" type="Node2D" parent="YSort"]
+y_sort_enabled = true
 
 [node name="Resource_Rock" parent="YSort/Rock" instance=ExtResource("9_1m0ea")]
 position = Vector2(189, -102)
@@ -860,9 +891,6 @@ position = Vector2(517, 57)
 position = Vector2(-65, 117)
 
 [node name="UI" parent="." instance=ExtResource("8_314pw")]
-
-[node name="BloorBar" parent="UI" index="0" node_paths=PackedStringArray("player")]
-player = NodePath("../../YSort/Player")
 
 [node name="Chat" parent="UI" index="1"]
 visible = false

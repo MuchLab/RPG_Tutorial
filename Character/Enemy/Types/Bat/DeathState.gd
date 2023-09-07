@@ -11,3 +11,7 @@ func on_enter():
 func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "death":
 		character.queue_free()
+
+
+func _on_damageable_state_death_trigered() -> void:
+	emit_signal("interrupt_state", self)

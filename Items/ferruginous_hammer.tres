@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="HarvestingTool" load_steps=3 format=3 uid="uid://cm2fwcvjw3ewx"]
+
+[ext_resource type="Script" path="res://Items/HarvestingTool.gd" id="1_03yxa"]
+[ext_resource type="Texture2D" uid="uid://no5gs1121m0x" path="res://Art/Action RPG Resources/Equips/Hammer.png" id="2_d53or"]
+
+[resource]
+script = ExtResource("1_03yxa")
+effected_types = Array[Resource("res://Environment/Types/resource_node_type.gd")]([])
+min_amount = 1
+max_amount = 1
+display_name = "Ferruginous Hammer"
+texture = ExtResource("2_d53or")

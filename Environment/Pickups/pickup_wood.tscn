@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bsx4rololljo7"]
+[gd_scene load_steps=6 format=3 uid="uid://bsx4rololljo7"]
 
 [ext_resource type="Script" path="res://Environment/Pickups/pickup.gd" id="1_pqhca"]
 [ext_resource type="Resource" uid="uid://cm7yh34q550dg" path="res://Environment/Resources/resource_wood.tres" id="2_bv254"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7a3qg"]
 size = Vector2(28, 28)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g2fhb"]
+radius = 63.0
 
 [node name="Pickup_Wood" type="Area2D"]
 z_index = -5
@@ -22,3 +25,13 @@ texture = ExtResource("2_iv2ch")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_7a3qg")
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource("CircleShape2D_g2fhb")
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]

@@ -20,22 +20,6 @@ func state_process(delta: float) -> void:
 	var direction = Input.get_vector("left", "right", "up", "down")
 	if direction != Vector2.ZERO and run_request_timer.is_stopped():
 		next_state = idle_state
-		
-#func on_enter():
-#	animation_tree[PLAYBACK_PARAMETER_STR].travel("hurt")
-		
-
-func _on_damageable_on_state_hit(health : int, hitting_character : CharacterBody2D) -> void:
-	if health > 0:
-		create_hit_effect()
-		into_invincible()
-		
-		run_request_timer.start()
-		emit_signal("interrupt_state", self)
-		var knockback_direction = hitting_character.global_position.direction_to(character.global_position)
-		character.velocity = knockback_direction * knockback_velocity
-	else:
-		emit_signal("interrupt_state", death_state)
 
 func create_hit_effect():
 	var hit_effect = hit_effect_template.instantiate()
@@ -56,3 +40,15 @@ func _on_invincible_timer_timeout() -> void:
 	EventBus.emit_signal("on_monitorable_changed", true)
 	var invincible_tween = get_tree().create_tween()
 	invincible_tween.stop()
+
+
+func _on_damageable_state_hurt_trigered(health, hitting_character) -> void:
+	if health > 0:
+		create_hit_effect()
+		into_invincible()
+		
+		run_request_timer.start()
+		emit_signal("interrupt_state", self)
+		if hitting_character:
+			var knockback_direction = hitting_character.global_position.direction_to(character.global_position)
+			character.velocity = knockback_direction * knockback_velocity

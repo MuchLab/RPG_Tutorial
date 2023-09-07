@@ -8,3 +8,7 @@ func on_enter():
 	player_death_animation.show()
 	player_death_animation.play("default")
 
+
+
+func _on_damageable_state_death_trigered() -> void:
+	emit_signal("interrupt_state", self)

@@ -10,16 +10,16 @@
 [ext_resource type="Script" path="res://Character/Player/HurtState.gd" id="4_bj304"]
 [ext_resource type="Texture2D" uid="uid://ckkmol4ylkixm" path="res://Art/Action RPG Resources/Player/player-swing-Sheet.png" id="4_e8uki"]
 [ext_resource type="Script" path="res://Character/Player/IdleState.gd" id="7_iaoc1"]
+[ext_resource type="Script" path="res://Character/Damageable.gd" id="7_noyhp"]
 [ext_resource type="Script" path="res://Character/Player/DeathState.gd" id="7_ufhni"]
 [ext_resource type="Script" path="res://Character/Player/RunState.gd" id="8_esfl0"]
 [ext_resource type="Script" path="res://Character/Player/SwingState.gd" id="9_wdnqw"]
 [ext_resource type="Script" path="res://Character/Player/HitBoxPivot.gd" id="10_lcu0a"]
 [ext_resource type="Script" path="res://Character/Player/Hitbox.gd" id="11_cibhj"]
-[ext_resource type="Texture2D" uid="uid://cb2c8jwg7f5mv" path="res://Art/Action RPG Resources/Equips/Sword.png" id="14_4omdb"]
+[ext_resource type="Script" path="res://Character/Player/Hurtbox.gd" id="12_w87vf"]
 [ext_resource type="Script" path="res://Character/Player/HandEquip.gd" id="14_tuoxf"]
-[ext_resource type="Resource" uid="uid://bi7qqp6m8hx0y" path="res://Items/DamagingTool/ferruginous_sword.tres" id="16_jkrgo"]
-[ext_resource type="Script" path="res://Character/Damageable.gd" id="18_ywkbx"]
-[ext_resource type="Resource" uid="uid://bsgmckgeuvf5c" path="res://Items/DamagingTool/Types/immediate_damage.tres" id="19_ni7vq"]
+[ext_resource type="Texture2D" uid="uid://ctabqdp4sdgxq" path="res://Art/Action RPG Resources/Equips/Pickaxe.png" id="15_el6wm"]
+[ext_resource type="Resource" uid="uid://gu116i464i8i" path="res://Items/ferruginous_pickaxe.tres" id="17_nw54l"]
 [ext_resource type="Script" path="res://Character/Player/Inventory.gd" id="21_c6e6i"]
 
 [sub_resource type="GDScript" id="GDScript_xlq0g"]
@@ -879,7 +879,7 @@ tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
+"update": 1,
 "values": [Vector2(14, -5), Vector2(18, -2), Vector2(18, -3)]
 }
 tracks/8/type = "value"
@@ -1480,8 +1480,8 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(0, 47.2827)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3eb1w"]
-radius = 9.7279
-height = 23.4558
+radius = 5.07107
+height = 16.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nkivd"]
 radius = 5.0
@@ -1581,19 +1581,21 @@ player_death_animation = NodePath("../../PlayerDeath")
 can_move = false
 can_direction = false
 
+[node name="Damageable" type="Node" parent="."]
+script = ExtResource("7_noyhp")
+health = 50.0
+
 [node name="HitBoxPivot" type="Marker2D" parent="."]
 position = Vector2(0, -4)
-rotation = -4.71239
+rotation = 3.14159
 script = ExtResource("10_lcu0a")
 
-[node name="HandEquip" type="Sprite2D" parent="HitBoxPivot" node_paths=PackedStringArray("equipped_character")]
+[node name="HandEquip" type="Sprite2D" parent="HitBoxPivot"]
 position = Vector2(16, 2)
-rotation = 2.35619
-texture = ExtResource("14_4omdb")
-flip_h = true
+rotation = 0.785398
+texture = ExtResource("15_el6wm")
 script = ExtResource("14_tuoxf")
-equipped_character = NodePath("../..")
-equipped_item = ExtResource("16_jkrgo")
+equipped_item = ExtResource("17_nw54l")
 
 [node name="Hitbox" type="Area2D" parent="HitBoxPivot" node_paths=PackedStringArray("hitting_character")]
 position = Vector2(0, 4)
@@ -1608,13 +1610,12 @@ position = Vector2(18, -2)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_3eb1w")
 
-[node name="Damageable" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 0
-script = ExtResource("18_ywkbx")
-damage_node_types = Array[Resource("res://Items/DamagingTool/Types/damage_node_type.gd")]([ExtResource("19_ni7vq")])
+script = ExtResource("12_w87vf")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Damageable"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, -7)
 shape = SubResource("CapsuleShape2D_nkivd")
 
@@ -1636,7 +1637,7 @@ script = ExtResource("21_c6e6i")
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/SwingState" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/RollState" method="_on_animation_tree_animation_finished"]
 [connection signal="timeout" from="CharacterStateMachine/HurtState/InvincibleTimer" to="CharacterStateMachine/HurtState" method="_on_invincible_timer_timeout"]
-[connection signal="area_entered" from="HitBoxPivot/Hitbox" to="HitBoxPivot/HandEquip" method="_on_hitbox_area_entered"]
+[connection signal="on_state_hit" from="Damageable" to="CharacterStateMachine/HurtState" method="_on_damageable_on_state_hit"]
+[connection signal="area_entered" from="HitBoxPivot/Hitbox" to="HitBoxPivot/Hitbox" method="_on_area_entered"]
 [connection signal="body_entered" from="HitBoxPivot/Hitbox" to="HitBoxPivot/HandEquip" method="_on_hitbox_body_entered"]
-[connection signal="state_death_trigered" from="Damageable" to="CharacterStateMachine/DeathState" method="_on_damageable_state_death_trigered"]
-[connection signal="state_hurt_trigered" from="Damageable" to="CharacterStateMachine/HurtState" method="_on_damageable_state_hurt_trigered"]
+[connection signal="on_hurt" from="Hurtbox" to="Damageable" method="_on_hurtbox_on_hurt"]
