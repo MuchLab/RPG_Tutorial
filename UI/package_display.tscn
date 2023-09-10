@@ -19,7 +19,7 @@ void fragment(){
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mahke"]
 resource_local_to_scene = true
 shader = SubResource("Shader_o108j")
-shader_parameter/mix_color = Color(0.639216, 0.380392, 0.0196078, 1)
+shader_parameter/mix_color = Color(0.631373, 0.443137, 0.266667, 1)
 
 [node name="PackageDisplay" type="PanelContainer"]
 material = SubResource("ShaderMaterial_mahke")

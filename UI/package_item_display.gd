@@ -1,16 +1,20 @@
 extends Panel
 
 class_name PackageItemDisplay
-
+@onready var selected_effect: TextureRect = $SelectedEffect
 @onready var texture_rect: TextureRect = $TextureRect
 @onready var amount: Label = $Amount
+@onready var locked_effect: TextureRect = $LockedEffect
 
-const locked_color = Color.YELLOW
-var is_locked : bool
+var is_locked : bool = false
 var is_hovered : bool = false
+var is_selected : bool = false
 
 func _ready() -> void:
-	pass
+	if not is_selected:
+		selected_effect.hide()
+	if not is_locked:
+		locked_effect.hide()
 
 var item_type : PackageItem :
 	set(new_item):
@@ -36,7 +40,17 @@ func set_empty():
 	
 func lock():
 	is_locked = true
-	self.modulate = locked_color
+	find_child("LockedEffect").show()
+func unlock():
+	is_locked = false
+	find_child("LockedEffect").hide()
 
 func set_as_hovered(_is_hovered : bool):
 	is_hovered = _is_hovered
+
+func set_as_selected(_is_selected : bool):
+	is_selected = _is_selected
+	if is_selected:
+		selected_effect.show()
+	else:
+		selected_effect.hide()

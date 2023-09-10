@@ -59,7 +59,7 @@ func add_inventory_item(item : Item, amount : int):
 		if id != -1:
 			inventory_items[id].amount+=amount
 			if item is ResourceItem:
-				emit_signal("inventory_item_amount_changed", inventory_items[id])
+				emit_signal("inventory_item_amount_changed_to_resource_display", inventory_items[id])
 			elif item is PackageItem:
 				if item.is_hotbar:
 					emit_signal("inventory_item_amount_changed_to_hotbar", inventory_items[id])

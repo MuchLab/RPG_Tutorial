@@ -17,7 +17,8 @@ func add_window(label_node : Control, window_node : Control):
 	label_node.set_mouse_filter(Control.MOUSE_FILTER_PASS)
 	
 func _input(event: InputEvent) -> void:
-	if used_label != null and event is InputEventMouse:
+	if used_label != null and used_window != null and event is InputEventMouse:
+		
 		mouse_position = event.position
 		viewport_size = get_viewport().get_visible_rect().size
 		if is_draging:
@@ -26,6 +27,7 @@ func _input(event: InputEvent) -> void:
 
 		if event is InputEventMouseButton:
 			if event.is_pressed():
+				self.move_child(used_window, self.get_child_count() - 1)
 				if !is_draging:
 					start_drag_at = mouse_position - used_window.global_position
 					is_draging = true

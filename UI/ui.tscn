@@ -19,7 +19,7 @@ void fragment(){
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8newq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lv1rf"]
 resource_local_to_scene = true
 shader = SubResource("Shader_o108j")
 shader_parameter/mix_color = Color(0.639216, 0.380392, 0.0196078, 1)
@@ -36,7 +36,7 @@ script = ExtResource("1_tfa45")
 
 [node name="ResourceDisplay" parent="." instance=ExtResource("8_50tqo")]
 
-[node name="PackageDisplay" parent="." instance=ExtResource("5_eccmj")]
-material = SubResource("ShaderMaterial_8newq")
-
 [node name="Hotbar" parent="." instance=ExtResource("9_5qimr")]
+
+[node name="PackageDisplay" parent="." instance=ExtResource("5_eccmj")]
+material = SubResource("ShaderMaterial_lv1rf")

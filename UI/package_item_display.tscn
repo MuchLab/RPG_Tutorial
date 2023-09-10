@@ -1,11 +1,48 @@
-[gd_scene load_steps=3 format=3 uid="uid://b51qosvv67f82"]
+[gd_scene load_steps=7 format=3 uid="uid://b51qosvv67f82"]
 
 [ext_resource type="Script" path="res://UI/package_item_display.gd" id="1_lmr31"]
+[ext_resource type="Texture2D" uid="uid://c51y5v0bfkihs" path="res://Art/Action RPG Resources/Equips/lockedEffect.png" id="2_f6qkd"]
 [ext_resource type="FontFile" uid="uid://cl0hwx6qofh88" path="res://Fonts/HanaleiFill-Regular.ttf" id="2_uxnv5"]
+[ext_resource type="Texture2D" uid="uid://bglyr5ey7o6va" path="res://Art/Action RPG Resources/Equips/selectedEffect.png" id="2_yo4y1"]
+
+[sub_resource type="Theme" id="Theme_l7y16"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6jmqk"]
+bg_color = Color(0.368627, 0.2, 0.027451, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.501961, 0.27451, 0, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [node name="PackageItemDisplay" type="Panel"]
 custom_minimum_size = Vector2(25, 25)
+theme = SubResource("Theme_l7y16")
+theme_override_styles/panel = SubResource("StyleBoxFlat_6jmqk")
 script = ExtResource("1_lmr31")
+
+[node name="LockedEffect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_f6qkd")
+
+[node name="SelectedEffect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_yo4y1")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
@@ -22,6 +59,5 @@ offset_bottom = 25.0
 size_flags_vertical = 8
 theme_override_fonts/font = ExtResource("2_uxnv5")
 theme_override_font_sizes/font_size = 5
-text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1

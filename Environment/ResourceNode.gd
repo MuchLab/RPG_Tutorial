@@ -5,14 +5,21 @@ class_name ResourceNode
 @export var node_types : Array[ResourceNodeType]
 @export var starting_resources : int = 1
 @export var pickup_type : PackedScene
+@export var depleted_effect : PackedScene
 @export var launch_speed : float = 75
 @export var launch_duration : float = 0.25
 @export var effect_interval_time = 0.1
 @export var swing_effect_rotation = 5
+
+
 var current_resources : int :
 	set(resource_count):
 		current_resources = resource_count
 		if resource_count <= 0:
+			var depleted_effect_instance = depleted_effect.instantiate()
+			depleted_effect_instance.position = position
+			get_parent().add_child(depleted_effect_instance)
+			depleted_effect_instance.emitting = true
 			queue_free()
 
 func _ready() -> void:

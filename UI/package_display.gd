@@ -15,7 +15,6 @@ var displays : Array[PackageItemDisplay]
 var inventory : Inventory = null
 var hovered_item = null
 var selected_item = null
-var splited_item = null
 
 func _process(delta: float) -> void:
 	if inventory_showed:
@@ -75,34 +74,22 @@ func find_available_space(item_type : PackageItem) -> PackageItemDisplay:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("inventory"):
 		inventory_showed = !inventory_showed
-	if hovered_item != null and splited_item == null and event.is_action_pressed("mouse_left"):
+	if hovered_item != null  and event.is_action_pressed("mouse_left"):
 		if selected_item == null:
-			if not hovered_item.is_empty():
+			selected_item = hovered_item
+			selected_item.set_as_selected(true)
+#		elif hovered_item != selected_item:
+#			exchange_item(selected_item, hovered_item)
+#			selected_item.set_as_selected(false)
+#			selected_item = null
+		else:
+			if hovered_item != selected_item:
+				selected_item.set_as_selected(false)
 				selected_item = hovered_item
 				selected_item.set_as_selected(true)
-		elif hovered_item != selected_item:
-			split_box.hide()
-			exchange_item(selected_item, hovered_item)
-			selected_item.set_as_selected(false)
-			selected_item = null
-		else:
-			split_box.hide()
-			selected_item.set_as_selected(false)
-			selected_item = null
-	if (hovered_item != null and 
-		selected_item != null and 
-		splited_item != null and 
-		event.is_action_pressed("mouse_left")):
-			hovered_item.current_item = splited_item.current_item
-			selected_item.subtract_item(splited_item.current_item[ITEM_AMOUNT])
-			selected_item.set_as_selected(false)
-			selected_item = null
-			splited_item = null
-			split_box.hide()
-		
-	if selected_item != null and event.is_action_pressed("split"):
-		split_box.show()
-		split_box.init_split_box(selected_item)
+#	if selected_item != null and event.is_action_pressed("split"):
+#		split_box.show()
+#		split_box.init_split_box(selected_item)
 		
 func get_item_index(item):
 	var index = 0
@@ -130,11 +117,6 @@ func on_item_mouse_exited(item):
 		hovered_item.set_as_hovered(false)
 		hovered_item = null
 		item.is_hovered = false
-
-func _on_split_box_item_splited(split_amount) -> void:
-	splited_item = package_item_template.instantiate()
-	splited_item.current_item = selected_item.current_item.duplicate()
-	splited_item.current_item[ITEM_AMOUNT] = split_amount
 
 
 func _on_close_pressed() -> void:

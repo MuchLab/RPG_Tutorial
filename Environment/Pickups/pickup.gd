@@ -43,7 +43,7 @@ func launch(velocity : Vector2, duration : float):
 func _on_body_entered(body : Node2D):
 	var inventory = body.find_child("Inventory")
 	if inventory:
-		inventory.increase_inventory_item_amount(resource_type, 1)
+		inventory.add_inventory_item(resource_type, 1)
 		queue_free()
 
 
