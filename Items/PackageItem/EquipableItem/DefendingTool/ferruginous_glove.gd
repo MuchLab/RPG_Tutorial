@@ -1,0 +1,3 @@
+extends DefendingTool
+
+class_name FerruginousGlove

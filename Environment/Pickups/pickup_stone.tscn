@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3nibo5j4jt2y"]
+[gd_scene load_steps=6 format=3 uid="uid://brqtiwdskpfdd"]
 
 [ext_resource type="Script" path="res://Environment/Pickups/pickup.gd" id="1_64bww"]
+[ext_resource type="Resource" uid="uid://dmywnikwqkuag" path="res://Items/ResourceItem/resource_stone.tres" id="2_awrab"]
 [ext_resource type="Texture2D" uid="uid://c0wpninminy8r" path="res://Art/Action RPG Resources/Pickups/Stone.png" id="2_k4gk3"]
-[ext_resource type="Resource" uid="uid://dmywnikwqkuag" path="res://Environment/Resources/resource_stone.tres" id="2_n7xl2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wc6xd"]
 radius = 7.0
@@ -16,7 +16,7 @@ z_index = -5
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_64bww")
-resource_type = ExtResource("2_n7xl2")
+resource_type = ExtResource("2_awrab")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_k4gk3")

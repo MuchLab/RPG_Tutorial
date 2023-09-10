@@ -3,7 +3,7 @@ extends State
 class_name HurtState
 
 @export var knockback_velocity : float = 150
-@export var friction : float = 50
+@export var friction : float = 150
 @export var idle_state : State
 @export var death_state : State
 @export var invincible_duration : float = 2.0
@@ -46,7 +46,6 @@ func _on_damageable_state_hurt_trigered(health, hitting_character) -> void:
 	if health > 0:
 		create_hit_effect()
 		into_invincible()
-		
 		run_request_timer.start()
 		emit_signal("interrupt_state", self)
 		if hitting_character:

@@ -22,10 +22,10 @@ func _input(event: InputEvent) -> void:
 			chat_active = false
 		
 func _ready() -> void:
+	get_parent().add_window($Title, self)
 	$Input.set_text("")
 	add_text_to_chat(CLR_TITLE, "Welcome to the RPG Tutorial!")
 	add_text_to_chat(CLR_YELLOW, "Welcome to the RPG Tutorial!", "Muchlab")
-	get_parent().add_window($Title)
 
 func _process(delta: float) -> void:
 	if chat_showed:

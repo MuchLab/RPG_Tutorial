@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="ResourceItem" load_steps=3 format=3 uid="uid://dmywnikwqkuag"]
-
-[ext_resource type="Script" path="res://Environment/Resources/resource_item.gd" id="1_olejl"]
-[ext_resource type="Texture2D" uid="uid://c0wpninminy8r" path="res://Art/Action RPG Resources/Pickups/Stone.png" id="2_46444"]
-
-[resource]
-script = ExtResource("1_olejl")
-display_name = "Stone"
-texture = ExtResource("2_46444")

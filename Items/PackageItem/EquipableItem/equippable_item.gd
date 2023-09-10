@@ -1,4 +1,4 @@
-extends Item
+extends PackageItem
 
 class_name EquippableItem
 

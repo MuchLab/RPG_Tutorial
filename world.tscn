@@ -891,11 +891,3 @@ position = Vector2(517, 57)
 position = Vector2(-65, 117)
 
 [node name="UI" parent="." instance=ExtResource("8_314pw")]
-
-[node name="Chat" parent="UI" index="1"]
-visible = false
-
-[node name="Inventory" parent="UI" index="2"]
-visible = false
-
-[editable path="UI"]

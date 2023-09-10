@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://nn8gxe87godv"
-path="res://.godot/imported/Glove.png-e87db6903792ec1f30bcb1221a18cfdf.ctex"
+path="res://.godot/imported/Glove.png-497e87ef691fc7f00e3e20771d571b4d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Items/craftable/Glove.png"
-dest_files=["res://.godot/imported/Glove.png-e87db6903792ec1f30bcb1221a18cfdf.ctex"]
+source_file="res://Art/Action RPG Resources/Equips/Glove.png"
+dest_files=["res://.godot/imported/Glove.png-497e87ef691fc7f00e3e20771d571b4d.ctex"]
 
 [params]
 

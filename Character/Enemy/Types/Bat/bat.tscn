@@ -14,8 +14,8 @@
 [ext_resource type="Script" path="res://Character/Enemy/Types/Bat/WanderState.gd" id="10_pwn7v"]
 [ext_resource type="Script" path="res://Character/Enemy/Types/Bat/ResumeState.gd" id="11_upvie"]
 [ext_resource type="Script" path="res://Character/Enemy/Types/Bat/BloodBar.gd" id="13_shbl3"]
+[ext_resource type="Resource" uid="uid://bsgmckgeuvf5c" path="res://Items/PackageItem/EquipableItem/DamagingTool/Types/immediate_damage.tres" id="15_73bec"]
 [ext_resource type="PackedScene" uid="uid://b7ponbilr757k" path="res://Character/Enemy/Types/Bat/soft_collision.tscn" id="15_h0p8s"]
-[ext_resource type="Resource" uid="uid://bsgmckgeuvf5c" path="res://Items/DamagingTool/Types/immediate_damage.tres" id="16_d1g7m"]
 [ext_resource type="Script" path="res://Character/Enemy/Types/Bat/Hitbox.gd" id="16_pdfup"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hc7c8"]
@@ -365,7 +365,7 @@ collision_layer = 0
 collision_mask = 8
 script = ExtResource("16_pdfup")
 hitting_character = NodePath("..")
-effected_types = Array[Resource("res://Items/DamagingTool/Types/damage_node_type.gd")]([ExtResource("16_d1g7m")])
+effected_types = Array[Resource("res://Items/PackageItem/EquipableItem/DamagingTool/Types/damage_node_type.gd")]([ExtResource("15_73bec")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, -18)
@@ -375,7 +375,7 @@ shape = SubResource("CapsuleShape2D_k44t0")
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("9_tl31n")
-damage_node_types = Array[Resource("res://Items/DamagingTool/Types/damage_node_type.gd")]([ExtResource("16_d1g7m")])
+damage_node_types = Array[Resource("res://Items/PackageItem/EquipableItem/DamagingTool/Types/damage_node_type.gd")]([ExtResource("15_73bec")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Damageable"]
 position = Vector2(0, -13)

@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://b51qosvv67f82"]
+
+[ext_resource type="Script" path="res://UI/package_item_display.gd" id="1_lmr31"]
+[ext_resource type="FontFile" uid="uid://cl0hwx6qofh88" path="res://Fonts/HanaleiFill-Regular.ttf" id="2_uxnv5"]
+
+[node name="PackageItemDisplay" type="Panel"]
+custom_minimum_size = Vector2(25, 25)
+script = ExtResource("1_lmr31")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+offset_right = 25.0
+offset_bottom = 25.0
+expand_mode = 3
+stretch_mode = 3
+
+[node name="Amount" type="Label" parent="."]
+layout_mode = 2
+offset_top = 14.0
+offset_right = 25.0
+offset_bottom = 25.0
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_uxnv5")
+theme_override_font_sizes/font_size = 5
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1

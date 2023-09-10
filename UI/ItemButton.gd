@@ -1,7 +1,7 @@
 @tool
 extends Button
 
-class_name ItemButton
+class_name HotbarItemButton
 #@onready var texture_rect: TextureRect = $TextureRect
 
 
@@ -14,8 +14,19 @@ class_name ItemButton
 
 var hand_equip : HandEquip
 static var last_button : Button = null
-@onready var hotkey: Label = $Hotkey
+@export var hotkey: Label
+@onready var amount: Label = $Amount
 @onready var panel: Panel = $Panel
+
+func set_hotbar_item_button(new_item : Item, new_amount : int, new_hand_equip : HandEquip):
+	item = new_item
+	hand_equip = new_hand_equip
+	update_amount(new_amount)
+func update_amount(new_amount : int):
+	if new_amount == 1:
+		amount.text = ""
+	else:
+		amount.text = str(new_amount)
 
 func _ready() -> void:
 	if not Engine.is_editor_hint():

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="DamageNodeType" load_steps=3 format=3 uid="uid://bsgmckgeuvf5c"]
+
+[ext_resource type="Resource" uid="uid://d0njlxjrdocjy" path="res://Items/PackageItem/EquipableItem/DamagingTool/DamageEffect/immediate_damage_effect.tres" id="1_ffigk"]
+[ext_resource type="Script" path="res://Items/PackageItem/EquipableItem/DamagingTool/Types/damage_node_type.gd" id="2_a6rmv"]
+
+[resource]
+script = ExtResource("2_a6rmv")
+damage_effect = ExtResource("1_ffigk")
+display_name = ""
