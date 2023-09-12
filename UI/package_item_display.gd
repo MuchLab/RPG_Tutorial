@@ -3,7 +3,7 @@ extends Panel
 class_name PackageItemDisplay
 @onready var selected_effect: TextureRect = $SelectedEffect
 @onready var texture_rect: TextureRect = $TextureRect
-@onready var amount: Label = $Amount
+@onready var amount_display: Label = $Amount
 @onready var locked_effect: TextureRect = $LockedEffect
 
 var is_locked : bool = false
@@ -16,27 +16,29 @@ func _ready() -> void:
 	if not is_locked:
 		locked_effect.hide()
 
-var item_type : PackageItem :
+var item : PackageItem :
 	set(new_item):
-		item_type = new_item
+		item = new_item
 		if new_item:
 			texture_rect.texture = new_item.texture
 		else:
 			texture_rect.texture = null
-			amount.text = ""
+			amount_display.text = ""
+var amount : int = 0
 
 func set_package_item(new_item : PackageItem, new_amount : int):
-	item_type = new_item
+	item = new_item
 	update_amount(new_amount)
 
 func update_amount(new_amount : int):
-	if new_amount == 1:
-		amount.text = ""
+	amount = new_amount
+	if new_amount <= 1:
+		amount_display.text = ""
 	else:
-		amount.text = str(new_amount)
+		amount_display.text = str(new_amount)
 	
 func set_empty():
-	texture_rect.texture = null
+	item = null
 	
 func lock():
 	is_locked = true

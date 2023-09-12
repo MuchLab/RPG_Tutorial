@@ -48,6 +48,7 @@ texture = ExtResource("2_yo4y1")
 layout_mode = 2
 offset_right = 25.0
 offset_bottom = 25.0
+mouse_filter = 2
 expand_mode = 3
 stretch_mode = 3
 

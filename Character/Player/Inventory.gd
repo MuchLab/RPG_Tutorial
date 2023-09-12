@@ -21,7 +21,9 @@ func _ready() -> void:
 	add_inventory_item(ResourceLoader.load("res://Items/PackageItem/EquipableItem/HarvestingTool/ferruginous_axe.tres"), 1)
 	add_inventory_item(ResourceLoader.load("res://Items/PackageItem/EquipableItem/HarvestingTool/ferruginous_pickaxe.tres"), 1)
 	add_inventory_item(ResourceLoader.load("res://Items/PackageItem/EquipableItem/HarvestingTool/ferruginous_hammer.tres"), 1)
-	add_inventory_item(ResourceLoader.load("res://Items/PackageItem/EquipableItem/DefendingTool/ferruginous_glove.tres"), 10)
+	add_inventory_item(ResourceLoader.load("res://Items/PackageItem/EquipableItem/DefendingTool/ferruginous_glove.tres"), 3)
+	add_inventory_item(ResourceLoader.load("res://Items/PackageItem/EquipableItem/DefendingTool/ferruginous_glove.tres"), 1)
+	add_inventory_item(ResourceLoader.load("res://Items/PackageItem/EquipableItem/DefendingTool/ferruginous_helmet.tres"), 10)
 	add_inventory_item(ResourceLoader.load("res://Items/PackageItem/EquipableItem/DefendingTool/ferruginous_helmet.tres"), 10)
 	add_inventory_item(ResourceLoader.load("res://Items/PackageItem/EquipableItem/DefendingTool/ferruginous_helmet.tres"), 10)
 
